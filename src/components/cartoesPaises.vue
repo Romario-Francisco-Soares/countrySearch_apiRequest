@@ -26,7 +26,6 @@ export default {
             pesquisaInesistente: false,
             arrayPaises:[],
             arrayPaisesVisiveis:[],
-            arrayVazia: 0,
         }
     },
     methods:{
@@ -55,14 +54,19 @@ export default {
             this.pesquisaInesistente = false;
         },
         arbitrarPesquisas(dado){
+            let arrayVazia = [];
+            let arrayCheia = this.arrayPaisesVisiveis.length;
             let auxiliar= this.buscarPorNome(this.arrayPaises, dado);
-            this.arrayPaisesVisiveis = ((auxiliar.length == this.arrayVazia) ? this.arrayPaisesVisiveis : auxiliar);
+            this.arrayPaisesVisiveis = ((auxiliar.length > arrayVazia) ? auxiliar : this.arrayPaisesVisiveis);
 
             auxiliar= this.buscarPorCapital(this.arrayPaises, dado);
-            this.arrayPaisesVisiveis = ((auxiliar.length == this.arrayVazia) ? this.arrayPaisesVisiveis : auxiliar);
-
+            this.arrayPaisesVisiveis = ((auxiliar.length > arrayVazia) ? auxiliar : this.arrayPaisesVisiveis);
+            
             auxiliar= this.buscarPorNomeNativo(this.arrayPaises, dado);
-            this.arrayPaisesVisiveis = ((auxiliar.length == this.arrayVazia) ? this.arrayPaisesVisiveis : auxiliar);
+            this.arrayPaisesVisiveis = ((auxiliar.length > arrayVazia) ? auxiliar : this.arrayPaisesVisiveis);
+
+            this.arrayPaisesVisiveis = ((this.arrayPaisesVisiveis.length == arrayCheia) 
+            ? this.exibirMensagemPesquisaInesistente() : this.arrayPaisesVisiveis);
         }
     },
     mounted(){
