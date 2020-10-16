@@ -1,7 +1,7 @@
 <template>
     <div class="containerPesquisar" >
-        <input v-model="paisPesquisado" type="text" placeholder="Pesquisar Pais">
-        <button @click="enviarpaisPesquisado(paisPesquisado)">Presquisar</button>
+        <input @keypress.enter="tratarDado(dadoPais)" v-model="dadoPais" type="text" placeholder="Pesquisar Pais">
+        <button @click="tratarDado(dadoPais)">Presquisar</button>
     </div>
 </template>
 
@@ -12,20 +12,30 @@ export default {
     name:'pesquisar',
     data(){
         return{
-            paisPesquisado: null,
+            dadoPais: null,
         }
     },
     methods:{
-        converterIniciaisCaixaAlta(dado){
-            // utilização de expressões regulares para colocar Uppercase nas letras iniciais
-            dado = dado.toLowerCase().replace(/(?:^|\s)\S/g, (a)=> a.toUpperCase() );
-            return dado;
+        pesquisarDado(dado){
+            bus.$emit('eventoDadoPais', dado);
         },
-        enviarpaisPesquisado(dado){
-            dado = this.converterIniciaisCaixaAlta(dado);
-            bus.$emit('eventoPaisPesquisado', dado);
+        mostrarTodosPaises(){
+            bus.$emit('eventoDadoPaisNull');
+        },
+        limparEspaços(dado){
+            return dado.trim();
+        },
+        verificarExistenciaDado(dado){
+            return ((dado == null || dado == '' || dado == ' ') ? false : true );
+        },
+        converterIniciaisCaixaAlta(dado){
+            return dado= dado.toLowerCase().replace(/(?:^|\s)\S/g, (a)=> a.toUpperCase() );
+        },
+        tratarDado(dado){
+            dado = this.converterIniciaisCaixaAlta(this.limparEspaços(dado));
+            (this.verificarExistenciaDado(dado) == true) ?this.pesquisarDado(dado) :this.mostrarTodosPaises();
         }
-   }
+    }
 }
 </script>
 
@@ -55,5 +65,50 @@ button{
 button:hover{
     cursor: pointer;
     background-color: rgba(126, 253, 98, 0.715);
+}
+@media screen and (min-width: 542px) and (max-width: 690px){
+    .containerPesquisar{
+        margin-bottom: 40px;
+    }
+    input{
+        width: 75%;
+        font-size: 0.8rem;
+        height: 45px;
+    }
+    button{
+        width: 20%;
+        font-size: 0.8rem;
+        height: 45px;   
+    }
+}
+@media screen and (max-width: 541px){
+    .containerPesquisar{
+        margin-bottom: 40px;
+    }
+    input{
+        width: 330px;
+        height: 40px;
+        font-size: 0.7rem;
+    }
+    button{
+        width: 80px;
+        height: 40px;
+        font-size: 0.7rem;
+    }
+}
+@media screen and (max-width: 300px) and (max-width: 475px){
+    .containerPesquisar{
+        margin-bottom: 40px;
+    }
+    input{
+        width: 230px;
+        height: 40px;
+        font-size: 0.7rem;
+    }
+    button{
+        width: 70px;
+        height: 40px;
+        font-size: 0.6rem;
+    }
 }
 </style>

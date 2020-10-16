@@ -25,59 +25,56 @@ export default {
         return{
             pesquisaInesistente: false,
             arrayPaises:[],
-            arrayPaisesVisiveis:[]
+            arrayPaisesVisiveis:[],
+            arrayVazia: 0,
         }
     },
     methods:{
         buscarTodosPaises(){
             Paises.listar().then(resposta =>{
-            this.arrayPaises = resposta.data
-            this.arrayPaisesVisiveis = this.arrayPaises
-            })
+            this.arrayPaises = resposta.data;
+            this.arrayPaisesVisiveis = this.arrayPaises;
+            });
         },
         buscarPorNome(arrayPesquisa, dadoPequisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.name == dadoPequisa)
+            return arrayPesquisa = arrayPesquisa.filter((array)=> array.name == dadoPequisa);
         },
         buscarPorCapital(arrayPesquisa, dadoPequisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.capital == dadoPequisa)
+            return arrayPesquisa = arrayPesquisa.filter((array)=> array.capital == dadoPequisa);
         },
         buscarPorNomeNativo(arrayPesquisa, dadoPequisa){
-            console.log('oi')
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.nativeName == dadoPequisa)
+            return arrayPesquisa = arrayPesquisa.filter((array)=> array.nativeName == dadoPequisa);
+        },
+        verificarPesquisaInesistente(dado){
+            return  ((dado == null || dado == '' || dado == ' ') ? true : false);
         },
         exibirMensagemPesquisaInesistente(){
-            this.pesquisaInesistente = true
+            this.pesquisaInesistente = true;
         },
         esconderMensagemPesquisaInesistente(){
-            this.pesquisaInesistente = false
+            this.pesquisaInesistente = false;
         },
         arbitrarPesquisas(dado){
-            this.arrayPaisesVisiveis = this.buscarPorNome(this.arrayPaises, dado)
-            if ( this.arrayPaisesVisiveis.length == 0) {
-                this.esconderMensagemPesquisaInesistente()
-                this.arrayPaisesVisiveis = this.buscarPorCapital(this.arrayPaises, dado)
-            }
-            if ( this.arrayPaisesVisiveis.length == 0) {
-                this.arrayPaisesVisiveis = this.buscarPorNomeNativo(this.arrayPaises, dado)
-                this.esconderMensagemPesquisaInesistente()
-            }
-            if ( this.arrayPaisesVisiveis.length == 0 && (dado == null || dado == '' || dado == ' ')) {
-                this.esconderMensagemPesquisaInesistente()
-                this.buscarTodosPaises()
-            }
-            if( this.arrayPaisesVisiveis.length == 0 && (dado != null || dado != '' || dado != ' ')){
-                this.exibirMensagemPesquisaInesistente()
-            }
-            if ( this.arrayPaisesVisiveis.length == 1 ) {
-                this.esconderMensagemPesquisaInesistente()
-            }
+            let auxiliar= this.buscarPorNome(this.arrayPaises, dado);
+            this.arrayPaisesVisiveis = ((auxiliar.length == this.arrayVazia) ? this.arrayPaisesVisiveis : auxiliar);
+
+            auxiliar= this.buscarPorCapital(this.arrayPaises, dado);
+            this.arrayPaisesVisiveis = ((auxiliar.length == this.arrayVazia) ? this.arrayPaisesVisiveis : auxiliar);
+
+            auxiliar= this.buscarPorNomeNativo(this.arrayPaises, dado);
+            this.arrayPaisesVisiveis = ((auxiliar.length == this.arrayVazia) ? this.arrayPaisesVisiveis : auxiliar);
         }
     },
     mounted(){
-        bus.$on('eventoPaisPesquisado',(dado)=>{
-            this.arbitrarPesquisas(dado)
+        this.buscarTodosPaises();
+
+        // Eventos Bus
+        bus.$on('eventoDadoPais',(dado)=>{
+            this.arbitrarPesquisas(dado);
         });
-        this.buscarTodosPaises()
+        bus.$on('eventoDadoPaisNull',()=>{
+            this.buscarTodosPaises();
+        });
     }
 }
 </script>
@@ -111,7 +108,6 @@ td{
     display: flex;  
     align-items: center;
 }
-
 td p{
     width: 110px; 
     margin-right: 10px;
@@ -121,5 +117,41 @@ span{
     margin: 70px 0;
     font-size: 1.5rem;
     color: rgb(252, 150, 150);
+}
+@media screen and (min-width: 542px) and (max-width: 690px){
+    .bandeiraPais{
+        width: 90px;
+        height: 90px;
+    }
+    table{
+        height: 90px;
+        margin: 20px 0;
+    }
+}
+@media screen and (max-width: 541px){
+    .bandeiraPais{
+        width: 90px;
+        height: 90px;
+    }
+    table{
+        height: 90px;
+        margin: 20px 0;
+    }
+}
+@media screen and (max-width: 300px) and (max-width: 475px){
+    .bandeiraPais{
+        width: 70px;
+        height: 70px;
+    }
+    td p{
+        width: 65px; 
+        margin-right: 5px;
+        text-align: center;
+        font-size: 0.6rem;
+    }
+    table{
+        height: 70px;
+        margin: 10px 0;
+    }
 }
 </style>

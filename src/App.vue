@@ -23,7 +23,7 @@ export default {
 #app {
   display: flex;
   width: 95%;
-  margin: 0px auto 0 auto;
+  margin: 0 auto 0 auto;
   flex-direction: column;
   align-items: center;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -31,6 +31,24 @@ export default {
 }
 h1{
   margin-bottom: 90px;
+}
+@media screen and (min-width: 542px) and (max-width: 690px){
+   h1{
+    font-size: 1.7rem;
+    margin-bottom: 60px;
+   }
+}
+@media screen and (max-width: 541px){
+   h1{
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+   }
+}
+@media screen and (max-width: 300px) and (max-width: 475px){
+   h1{
+    font-size: 1rem;
+    margin-bottom: 25px;
+   }
 }
 
 </style>
