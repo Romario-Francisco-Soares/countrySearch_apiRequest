@@ -83,13 +83,13 @@ export default {
     },
     created(){
         this.buscarTodosPaises();
-        
     },
     beforeMount(){
         bus.$on('eventoDadoPais',(dado)=>{
             this.arbitrarPesquisas(dado);
         });
         bus.$on('eventoDadoPaisNull',()=>{
+            this.esconderMensagemPesquisaNaoEncontrada()
             this.buscarTodosPaises();
         });
         bus.$on('eventoEmitirPagina',(dado)=>{
