@@ -32,8 +32,8 @@ export default {
             return dado= dado.toLowerCase().replace(/(?:^|\s)\S/g, (a)=> a.toUpperCase() );
         },
         tratarDado(dado){
-            dado = this.converterIniciaisCaixaAlta(this.limparEspaços(dado));
-            (this.verificarExistenciaDado(dado) == true) ?this.pesquisarDado(dado) :this.mostrarTodosPaises();
+            (this.verificarExistenciaDado(dado) == true) ? dado = this.converterIniciaisCaixaAlta(this.limparEspaços(dado)) : '';
+            (this.verificarExistenciaDado(dado) == true) ? this.pesquisarDado(dado) : this.mostrarTodosPaises();
         }
     }
 }
@@ -58,13 +58,13 @@ button{
     width: 15%;
     font-size: 1rem;
     border: none;
-    background-color: rgb(181, 255, 162);
+    background-color:#6ae9a3;
     border-radius: 0px 10px  10px 0px;
     transition-duration: 0.5s;
 }
 button:hover{
     cursor: pointer;
-    background-color: rgba(126, 253, 98, 0.715);
+    background-color:  #89f1b8;
 }
 @media screen and (min-width: 542px) and (max-width: 690px){
     .containerPesquisar{
