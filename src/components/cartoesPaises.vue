@@ -8,11 +8,9 @@
                 <tr><p><strong>Nome</strong></p><p>{{pais.name}}</p></tr>
                 <tr><p><strong>Nome Nativo</strong></p><p>{{pais.nativeName}}</p></tr>
                 <tr><p><strong>Capital</strong></p><p>{{pais.capital}}</p></tr>
-                <div :class="classesDinamicas">
-                    <tr><p><strong>Continente</strong></p><p>{{pais.region}}</p></tr>
-                    <tr><p><strong>Moeda Local</strong></p><p>{{pais.currencies[0].name}}</p></tr>
-                    <tr><p><strong>Área Geografica</strong></p><p>{{pais.area}}Km2</p></tr>
-                </div>
+                <tr><p><strong>Continente</strong></p><p>{{pais.region}}</p></tr>
+                <tr><p><strong>Moeda Local</strong></p><p>{{pais.currencies[0].name}}</p></tr>
+                <tr><p><strong>Área Geografica</strong></p><p>{{pais.area}}Km2</p></tr>
             </td>
         </table>
         <span v-show="pesquisaInesistente">Ops, não encontramos este País, verifique o campo pesquisa</span>
@@ -112,7 +110,6 @@ export default {
 </script>
 
 <style scooped>
-
 .containerCartoes{
     display: flex;
     width: 100%;
@@ -121,40 +118,32 @@ export default {
 }
 table{
     display: flex;
-    max-width: 510px;
-    height:130px;
+    max-width: 580px;
     justify-content: space-between;
     border-radius: 10px;
     box-shadow: 0 0 10px 4px rgba(2, 2, 19, 0.10);
     background-color: #fcfcfc;
     margin: 20px 0;
-    transition-duration: 0.5s;
 }
 table:hover{
     cursor: pointer;
     box-shadow: 0 0 15px 7px rgba(2, 2, 19, 0.10);
 }
-.bandeiraPais{
+.bandeiraPais img{
     width: 150px;
-    height: 130px;
-}
-table img{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
+    height: 140px;
+    border-radius:10px;
 }
 td{
-    display: flex;  
+    display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-strong{
-    font-weight: bold;
+tr{
+    width: 110px;     
 }
 td p{
-    width: 110px; 
-    margin-right: 10px;
     text-align: center;
 }
 span{
@@ -162,48 +151,46 @@ span{
     font-size: 1.5rem;
     color: rgb(252, 150, 150);
 }
-.mostrar{
-    display: flex;  
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-}
-.ocultar{
-    display: none;
-}
 @media screen and (min-width: 542px) and (max-width: 690px){
-    .bandeiraPais{
+    .bandeiraPais img{
         width: 90px;
         height: 90px;
     }
     table{
+        max-width: 520px;
         height: 90px;
         margin: 20px 0;
     }
 }
 @media screen and (max-width: 541px){
-    .bandeiraPais{
+    .bandeiraPais img{
         width: 90px;
         height: 90px;
     }
     table{
+        width: 90%;
         height: 90px;
         margin: 20px 0;
     }
 }
 @media screen and (min-width: 300px) and (max-width: 475px){
-    .bandeiraPais{
-        width: 70px;
-        height: 70px;
+    .bandeiraPais img{
+        width: 90px;
+        height: 90px;
+    }
+    td{
+        justify-content: space-around;
+    }
+    tr{
+        width: 55px;
+        margin-right: 5px;
     }
     td p{
-        width: 65px; 
-        margin-right: 5px;
         text-align: center;
-        font-size: 0.6rem;
+        font-size: 0.5rem;
     }
     table{
-        height: 70px;
+        width: 300px;
         margin: 10px 0;
     }
 }

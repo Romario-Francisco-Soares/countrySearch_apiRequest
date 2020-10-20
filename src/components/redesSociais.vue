@@ -2,11 +2,11 @@
     <div class="redesSociais" >
         <div  class="linkedin"><a href="https://www.linkedin.com/in/rom%C3%A1rio-francisco-4aa7151b2" target="blanck">
             <img src="../assets/iconeLinkedin.svg" alt="Meu Linkedin"/></a>
-            <span class="spanLinkedin">Linkedin</span>
+            <span>Linkedin</span>
         </div> 
         <div class="gitHub"><a href="https://github.com/Romario-Francisco-Soares" target="blanck">
             <img src="../assets/iconeGithub.svg" alt="Meu GitHub"/></a>
-            <span class="spanGithub">Github</span>     
+            <span>Github</span>     
         </div>   
     </div>
 </template>
