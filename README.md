@@ -3,39 +3,37 @@
 CountrySearch é um sistema de pesquisa de países através do nome destes, podendo ser o nome nativo, <br>
 nome na linguagem inglesa ou ainda o nome de sua Capital.
 
-## Interface
-
-![inicio_pc](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img/header.jpg)
-
-![navegacao_pc](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img/header%2Bnavega%C3%A7%C3%A3o.jpg)
-
-![pesquisa_pc](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img/pesquisa.jpg)
-
-![informacoes_contato_pc](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img/footer.jpg)
-
-![inicio_mobile](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img_mobile/header_mobile.jpg)
-
-![navegacao_mobile](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img_mobile/pesquisa_mobile.jpg)
-
-![informacoes_contato_mobile](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img_mobile/footer_mobile.jpg)
-
-## Video
-
-http://
 
 ## Tecnologias Utilizadas
-
 ✔ Framework vueJs <br>
 ✔ Css flexbox<br>
 ✔ Axios<br>
 ✔ Api<br>
 
-## Metodologias e tecnicas
 
+## Metodologias e tecnicas
 ✔ Layout responsivo<br>
 ✔ Ui/Ux design<br>
 ✔ Clean Code<br>
 ✔ Solid<br>
+
+
+## Interface
+
+#### Inicio
+![inicio_pc](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img/header.jpg)
+
+### Footer
+![informacoes_contato_pc](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img/footer.jpg)
+
+### Versão Mobile
+![inicio_mobile](https://github.com/Romario-Francisco-Soares/countrySearch_apiRequest_gamific/blob/main/gitReadme/img_mobile/header_mobile.jpg)
+
+## Video
+
+[![Projeto CountrySearch](http://img.youtube.com/vi/-1hshKuu6fU/0.jpg)](http://www.youtube.com/watch?v=-1hshKuu6fU "Como inicializar meu projeto")
+
+
 
 ## E os 'por quês' ?
 
@@ -77,6 +75,9 @@ http://
 
 VueCli<br>
 Axios<br>
+
+
+## Execução do Código
 
 ```
 npm install
