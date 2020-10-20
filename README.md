@@ -10,7 +10,7 @@ nome na linguagem inglesa ou ainda o nome de sua Capital.
  ✔ Framework vueJs <br>
  ✔ Css flexbox<br>
  ✔ Axios<br>
- ✔ ApiRest
+ ✔ ApiRest<br>
  ✔ Layout responsivo<br>
  ✔ Ui/Ux design<br>
   
