@@ -56,7 +56,6 @@ export default {
 .paginacao{
     display:flex;
     align-items: center;
-    height: 330px;
     flex-direction: column;
 }
 .paginacao span{

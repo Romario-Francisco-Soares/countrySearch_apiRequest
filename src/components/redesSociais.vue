@@ -21,7 +21,6 @@ export default {
 .redesSociais{
     display: flex;
 }
-
 .redesSociais span{
     position: absolute;
     margin: -65px 0 0 0;

@@ -1,6 +1,6 @@
 <template>
     <div class="containerCartoes" >
-        <table v-for="pais in arrayPaisesVisiveis" :key="pais.id" @click="mostrarInformacoesOcultas()">
+        <table v-for="pais in arrayPaisesVisiveis" :key="pais.id" @click="mostrarInformacoesPaises()">
             <div class="bandeiraPais" >
                 <img :src="pais.flag" :alt="pais.nome">
             </div>
@@ -8,10 +8,10 @@
                 <tr><p><strong>Nome</strong></p><p>{{pais.name}}</p></tr>
                 <tr><p><strong>Nome Nativo</strong></p><p>{{pais.nativeName}}</p></tr>
                 <tr><p><strong>Capital</strong></p><p>{{pais.capital}}</p></tr>
-                <div class="informacoesOcultas">
-                    <tr><p><strong>Nome</strong></p><p>{{pais.name}}</p></tr>
-                    <tr><p><strong>Nome Nativo</strong></p><p>{{pais.nativeName}}</p></tr>
-                    <tr><p><strong>Capital</strong></p><p>{{pais.capital}}</p></tr>
+                <div :class="classesDinamicas">
+                    <tr><p><strong>Continente</strong></p><p>{{pais.region}}</p></tr>
+                    <tr><p><strong>Moeda Local</strong></p><p>{{pais.currencies[0].name}}</p></tr>
+                    <tr><p><strong>Área Geografica</strong></p><p>{{pais.area}}Km2</p></tr>
                 </div>
             </td>
         </table>
@@ -31,19 +31,28 @@ export default {
             pesquisaInesistente: false,
             arrayPaises:[],
             arrayPaisesVisiveis:[],
+            primeiraPagina: 0,
             paginaAtual: 1,
-            limitePaisesPorPagina: null
+            limitePaisesPorPagina: null,
+            classesDinamicas:{
+                'mostrar':false,
+                'ocultar': true
+            }
         }
     },
     methods:{
-        mostrarInformacoesOcultas(){
-                                // parei por aqui ---------------
+        mostrarInformacoesPaises(){
+            this.classesDinamicas.mostrar = !this.classesDinamicas.mostrar;
+            this.classesDinamicas.ocultar = !this.classesDinamicas.ocultar;
+        },
+        emitirTotalPaises(dado){
+            bus.$emit('eventoTotalPaises', dado.length);
         },
         buscarTodosPaises(){
             Paises.listar().then(resposta =>{
             this.arrayPaises = resposta.data;
-            this.exibirPagina();
-            bus.$emit('eventoTotalPaises', this.arrayPaises.length);
+            this.exibirPagina(this.primeiraPagina);
+            this.emitirTotalPaises(this.arrayPaises);
             });
         },
         buscarPorNome(arrayPesquisa, dadoPequisa){
@@ -74,7 +83,7 @@ export default {
             this.arrayPaisesVisiveis = auxiliar;
             this.verificarPesquisaNaoEncontrada(auxiliar.length);
         },
-        exibirPagina(dado = 0){
+        exibirPagina(dado){
             this.paginaAtual = dado;
             this.arrayPaisesVisiveis = this.arrayPaises.slice(
             this.paginaAtual*this.limitePaisesPorPagina,
@@ -89,7 +98,7 @@ export default {
             this.arbitrarPesquisas(dado);
         });
         bus.$on('eventoDadoPaisNull',()=>{
-            this.esconderMensagemPesquisaNaoEncontrada()
+            this.esconderMensagemPesquisaNaoEncontrada();
             this.buscarTodosPaises();
         });
         bus.$on('eventoEmitirPagina',(dado)=>{
@@ -112,7 +121,9 @@ export default {
 }
 table{
     display: flex;
-    height: 130px;
+    max-width: 510px;
+    height:130px;
+    justify-content: space-between;
     border-radius: 10px;
     box-shadow: 0 0 10px 4px rgba(2, 2, 19, 0.10);
     background-color: #fcfcfc;
@@ -135,6 +146,8 @@ table img{
 td{
     display: flex;  
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 strong{
     font-weight: bold;
@@ -149,11 +162,14 @@ span{
     font-size: 1.5rem;
     color: rgb(252, 150, 150);
 }
-.informacoesOcultas{
-    display: none;
+.mostrar{
+    display: flex;  
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }
-.mostrarInformacoesOcultas{
-    display: flex;
+.ocultar{
+    display: none;
 }
 @media screen and (min-width: 542px) and (max-width: 690px){
     .bandeiraPais{
