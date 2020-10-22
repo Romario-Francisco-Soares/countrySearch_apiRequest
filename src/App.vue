@@ -1,6 +1,7 @@
 <template>
   <div id="app" >
-    <h1>Lista de Países em  Estilo Cartão</h1>
+    <modelCard/>
+  <!--  <h1>Lista de Países em  Estilo Cartão</h1>
     <pesquisar/>
     <div class="conteiner" >
       <div class="conteiterCartoesPaises">
@@ -10,23 +11,25 @@
         <paginacao/>
       </div>
     </div>
-    <informacoesContato/>
+    <informacoesContato/>-->
 </div>
 </template>
 
 <script>
-import pesquisar from './components/pesquisar'
-import cartoesPaises from './components/cartoesPaises'
-import paginacao from './components/paginacao'
-import informacoesContato from './components/informacoesContato'
+//import pesquisar from './components/pesquisar'
+//import cartoesPaises from './components/cartoesPaises'
+//import paginacao from './components/paginacao'
+//import informacoesContato from './components/informacoesContato'
+import modelCard from './components/modelCard'
 
 export default {
   name: 'App',
   components: {
-    pesquisar,
-    cartoesPaises,
-    paginacao,
-    informacoesContato,
+    //pesquisar,
+    //cartoesPaises,
+    //paginacao,
+    //informacoesContato,
+    modelCard
   }
 }
 </script>

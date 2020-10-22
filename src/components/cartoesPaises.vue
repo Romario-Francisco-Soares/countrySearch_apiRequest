@@ -32,17 +32,9 @@ export default {
             primeiraPagina: 0,
             paginaAtual: 1,
             limitePaisesPorPagina: null,
-            classesDinamicas:{
-                'mostrar':false,
-                'ocultar': true
-            }
         }
     },
     methods:{
-        mostrarInformacoesPaises(){
-            this.classesDinamicas.mostrar = !this.classesDinamicas.mostrar;
-            this.classesDinamicas.ocultar = !this.classesDinamicas.ocultar;
-        },
         emitirTotalPaises(dado){
             bus.$emit('eventoTotalPaises', dado.length);
         },
