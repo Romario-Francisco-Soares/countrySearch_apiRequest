@@ -2,7 +2,7 @@
     <div class="containerCartoes" >
         <table v-for="pais in arrayPaisesVisiveis" :key="pais.id" @click="mostrarInformacoesPaises()">
             <div class="bandeiraPais" >
-                <img :src="pais.flag" :alt="pais.nome">
+                <img :src="pais.flag" :alt="pais.name">
             </div>
             <td>
                 <tr><p><strong>Nome</strong></p><p>{{pais.name}}</p></tr>
