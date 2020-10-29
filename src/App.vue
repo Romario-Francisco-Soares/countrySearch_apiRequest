@@ -1,8 +1,7 @@
 <template>
   <div id="app" >
-    <!---->   <div class="containerModelCard" @click="fecharModalDetalhamento()" >
-      <modelCard v-show="exibirModal"/>
-      falta fechar modal 
+    <div class="containerModelCard" @click="fecharModalDetalhamento()" v-show="exibirModal">
+      <modelCard/>
     </div>
     <h1>Lista de Países em  Estilo Cartão</h1>
     <pesquisar/>
