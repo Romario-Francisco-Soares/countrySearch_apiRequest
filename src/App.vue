@@ -1,35 +1,57 @@
 <template>
   <div id="app" >
-    <modelCard/>
-  <!--  <h1>Lista de Países em  Estilo Cartão</h1>
+    <!---->   <div class="containerModelCard" @click="fecharModalDetalhamento()" >
+      <modelCard v-show="exibirModal"/>
+      falta fechar modal 
+    </div>
+    <h1>Lista de Países em  Estilo Cartão</h1>
     <pesquisar/>
-    <div class="conteiner" >
+    <div class="conteiner">
       <div class="conteiterCartoesPaises">
-        <cartoesPaises/>
+        <cartoesPaises />
       </div>
       <div class="conteinerPaginacao">
-        <paginacao/>
+        <paginacao />
       </div>
     </div>
-    <informacoesContato/>-->
+    <informacoesContato/>
 </div>
 </template>
 
 <script>
-//import pesquisar from './components/pesquisar'
-//import cartoesPaises from './components/cartoesPaises'
-//import paginacao from './components/paginacao'
-//import informacoesContato from './components/informacoesContato'
+import pesquisar from './components/pesquisar'
+import cartoesPaises from './components/cartoesPaises'
+import paginacao from './components/paginacao'
+import informacoesContato from './components/informacoesContato'
 import modelCard from './components/modelCard'
+import { bus } from './main'
 
 export default {
   name: 'App',
   components: {
-    //pesquisar,
-    //cartoesPaises,
-    //paginacao,
-    //informacoesContato,
+    pesquisar,
+    cartoesPaises,
+    paginacao,
+    informacoesContato,
     modelCard
+  },
+  data(){
+    return{
+      exibirModal: false
+    }
+  },
+  methods:{
+    abrirModalDetalhamento(){
+      this.exibirModal = true;
+    },
+    fecharModalDetalhamento(){
+      this.exibirModal = false;
+    }
+  },
+  beforeMount(){
+    bus.$on('eventoAbrirModalPais',()=>{
+      this.abrirModalDetalhamento();
+    });
   }
 }
 </script>
@@ -38,6 +60,11 @@ export default {
 @import url('./assets/reset.css');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
 
+.containerModelCard{
+  position: absolute;
+  z-index: 999;
+  left: 0px;
+}
 .conteinerPaginacao{
   position: fixed;
   top: 200px;

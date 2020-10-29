@@ -1,6 +1,6 @@
 <template>
     <div class="containerCartoes" >
-        <table v-for="pais in arrayPaisesVisiveis" :key="pais.id" @click="mostrarInformacoesPaises()">
+        <table v-for="pais in arrayPaisesVisiveis" :key="pais.id" @click="exibirDetalhamento(pais)">
             <div class="bandeiraPais" >
                 <img :src="pais.flag" :alt="pais.name">
             </div>
@@ -35,6 +35,10 @@ export default {
         }
     },
     methods:{
+        exibirDetalhamento(dado){
+            bus.$emit('eventoDetalhamento', dado);
+            bus.$emit('eventoAbrirModalPais');
+        },
         emitirTotalPaises(dado){
             bus.$emit('eventoTotalPaises', dado.length);
         },
