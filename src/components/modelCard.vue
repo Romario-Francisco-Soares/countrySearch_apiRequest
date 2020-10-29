@@ -45,7 +45,7 @@
           <p><strong>Latitude/Long</strong></p>
           <div class="latitude"> 
               <p v-for="latlng in pais.latlng" :key="latlng" >
-                {{latlng}}, 
+                {{latlng}},
               </p>
           </div>
          
@@ -63,8 +63,8 @@ export default {
 
     data() {
         return {
-            pais: [],
-        };
+            pais: []
+        }
     },
     methods:{
         fecharModal(){
@@ -74,7 +74,6 @@ export default {
     beforeMount() {
         bus.$on("eventoDetalhamento", (dado) => {
         this.pais = dado;
-        console.log(dado);
         });
     },
 };
