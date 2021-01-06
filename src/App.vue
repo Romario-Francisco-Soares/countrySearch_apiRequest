@@ -9,10 +9,14 @@
       <div class="conteiterCartoesPaises">
         <cartoesPaises />
       </div>
+      <div class="containerMostrarMais">
+        <mostrarMais/>
+      </div>
       <div class="conteinerPaginacao">
         <paginacao />
       </div>
     </div>
+    
     <informacoesContato/>
 </div>
 </template>
@@ -23,6 +27,7 @@ import cartoesPaises from './components/cartoesPaises'
 import paginacao from './components/paginacao'
 import informacoesContato from './components/informacoesContato'
 import modelCard from './components/modelCard'
+import mostrarMais from './components/mostrarMais'
 import { bus } from './main'
 
 export default {
@@ -32,7 +37,8 @@ export default {
     cartoesPaises,
     paginacao,
     informacoesContato,
-    modelCard
+    modelCard,
+    mostrarMais
   },
   data(){
     return{
@@ -64,15 +70,13 @@ export default {
   z-index: 999;
   left: 0px;
 }
-.conteinerPaginacao{
-  position: fixed;
-  top: 200px;
-  margin: 0 10px;
-}
 .conteiterCartoesPaises{
   display: flex;
   width: 100%;
   justify-content: center;
+}
+.containerMostrarMais{
+  margin: 15px 0;
 }
 #app {
   display: flex;
@@ -83,6 +87,8 @@ export default {
 }
 .conteiner{
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   justify-content: space-between;
   box-shadow: 0 7px 5px 4px rgba(2, 2, 19, 0.10);
