@@ -49,15 +49,60 @@ export default {
             this.emitirTotalPaises(this.arrayPaises);
             });
         },
-        buscarPorNome(arrayPesquisa, dadoPequisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.name == dadoPequisa);
+        teste(arrayPesquisa, dadoPesquisa){
+            let armazenador = []
+            let posicaoArmazenamento = 0;
+            for (let i = 0; i < arrayPesquisa.length; i++) {
+                if (arrayPesquisa[i].name.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
+                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
+                    posicaoArmazenamento += 1
+                }
+            }
+            return armazenador;
         },
-        buscarPorCapital(arrayPesquisa, dadoPequisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.capital == dadoPequisa);
+        buscarPorNome(arrayPesquisa, dadoPesquisa){
+            let armazenador = []
+            let posicaoArmazenamento = 0;
+            for (let i = 0; i < arrayPesquisa.length; i++) {
+                if (arrayPesquisa[i].name.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
+                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
+                    posicaoArmazenamento += 1
+                }
+            }
+            return armazenador;
         },
-        buscarPorNomeNativo(arrayPesquisa, dadoPequisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.nativeName == dadoPequisa);
+        buscarPorCapital(arrayPesquisa, dadoPesquisa){
+            let armazenador = []
+            let posicaoArmazenamento = 0;
+            for (let i = 0; i < arrayPesquisa.length; i++) {
+                if (arrayPesquisa[i].capital.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
+                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
+                    posicaoArmazenamento += 1
+                }
+            }
+            return armazenador;
         },
+        buscarPorNomeNativo(arrayPesquisa, dadoPesquisa){
+            let armazenador = []
+            let posicaoArmazenamento = 0;
+            for (let i = 0; i < arrayPesquisa.length; i++) {
+                if (arrayPesquisa[i].nativeName.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
+                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
+                    posicaoArmazenamento += 1
+                }
+            }
+            return armazenador;
+        },/*
+        buscarPorNome(arrayPesquisa, dadoPesquisa){
+            this.teste(arrayPesquisa, dadoPesquisa);
+            return arrayPesquisa = arrayPesquisa.filter((array)=> array == dadoPesquisa);
+        },
+        buscarPorCapital(arrayPesquisa, dadoPesquisa){
+            return arrayPesquisa = arrayPesquisa.filter((array)=> array.capital == dadoPesquisa);
+        },
+        buscarPorNomeNativo(arrayPesquisa, dadoPesquisa){
+            return arrayPesquisa = arrayPesquisa.filter((array)=> array.nativeName == dadoPesquisa);
+        },*/
         verificarPesquisaNaoEncontrada(tamanhoArray){
             let arrayVazia = [];
             ((tamanhoArray == arrayVazia) ? this.exibirMensagemPesquisaNaoEncontrada() : this.esconderMensagemPesquisaNaoEncontrada());

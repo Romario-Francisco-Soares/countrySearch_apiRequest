@@ -1,6 +1,6 @@
 <template>
     <div class="containerPesquisar" >
-        <input @keypress.enter="tratarDado(dadoPais)" v-model="dadoPais" type="text" placeholder="Pesquisar Pais">
+        <input @keypress="tratarDado(dadoPais)" v-model="dadoPais" type="text" placeholder="Pesquisar Pais">
         <button @click="tratarDado(dadoPais)">Presquisar</button>
     </div>
 </template>
@@ -12,7 +12,7 @@ export default {
     name:'pesquisar',
     data(){
         return{
-            dadoPais: null,
+            dadoPais: null
         }
     },
     methods:{
@@ -32,7 +32,7 @@ export default {
             return dado= dado.toLowerCase().replace(/(?:^|\s)\S/g, (a)=> a.toUpperCase() );
         },
         tratarDado(dado){
-            (this.verificarExistenciaDado(dado) == true) ? dado = this.converterIniciaisCaixaAlta(this.limparEspaços(dado)) : '';
+            (this.verificarExistenciaDado(dado) == true) ? dado = this.limparEspaços(dado) : '';
             (this.verificarExistenciaDado(dado) == true) ? this.pesquisarDado(dado) : this.mostrarTodosPaises();
         }
     }
