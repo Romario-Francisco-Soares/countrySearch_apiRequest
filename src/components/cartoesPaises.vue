@@ -64,7 +64,7 @@ export default {
             let armazenador = []
             let posicaoArmazenamento = 0;
             for (let i = 0; i < arrayPesquisa.length; i++) {
-                if (arrayPesquisa[i].name.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
+                if (arrayPesquisa[i].name.toLowerCase().indexOf(dadoPesquisa) != -1){
                     armazenador[posicaoArmazenamento] = arrayPesquisa[i];
                     posicaoArmazenamento += 1
                 }
@@ -75,7 +75,7 @@ export default {
             let armazenador = []
             let posicaoArmazenamento = 0;
             for (let i = 0; i < arrayPesquisa.length; i++) {
-                if (arrayPesquisa[i].capital.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
+                if (arrayPesquisa[i].capital.toLowerCase().indexOf(dadoPesquisa) != -1){
                     armazenador[posicaoArmazenamento] = arrayPesquisa[i];
                     posicaoArmazenamento += 1
                 }
@@ -86,7 +86,7 @@ export default {
             let armazenador = []
             let posicaoArmazenamento = 0;
             for (let i = 0; i < arrayPesquisa.length; i++) {
-                if (arrayPesquisa[i].nativeName.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
+                if (arrayPesquisa[i].nativeName.toLowerCase().indexOf(dadoPesquisa) != -1){
                     armazenador[posicaoArmazenamento] = arrayPesquisa[i];
                     posicaoArmazenamento += 1
                 }
@@ -94,7 +94,6 @@ export default {
             return armazenador;
         },/*
         buscarPorNome(arrayPesquisa, dadoPesquisa){
-            this.teste(arrayPesquisa, dadoPesquisa);
             return arrayPesquisa = arrayPesquisa.filter((array)=> array == dadoPesquisa);
         },
         buscarPorCapital(arrayPesquisa, dadoPesquisa){
@@ -103,6 +102,11 @@ export default {
         buscarPorNomeNativo(arrayPesquisa, dadoPesquisa){
             return arrayPesquisa = arrayPesquisa.filter((array)=> array.nativeName == dadoPesquisa);
         },*/
+        concatenarArrays(array1, array2, array3){
+            let uniaoArrays = null;
+            uniaoArrays = [...new Set([...array1, ...array2, ...array3])];
+            return uniaoArrays;
+        },
         verificarPesquisaNaoEncontrada(tamanhoArray){
             let arrayVazia = [];
             ((tamanhoArray == arrayVazia) ? this.exibirMensagemPesquisaNaoEncontrada() : this.esconderMensagemPesquisaNaoEncontrada());
@@ -114,6 +118,7 @@ export default {
             this.pesquisaInesistente = false;
         },
         arbitrarPesquisas(dado){
+            /*
             let arrayVazia = 0;
             let auxiliar = [];
             ((auxiliar.length == arrayVazia) ? auxiliar= this.buscarPorNome(this.arrayPaises, dado) : '');
@@ -121,6 +126,16 @@ export default {
             ((auxiliar.length == arrayVazia) ? auxiliar= this.buscarPorNomeNativo(this.arrayPaises, dado) : '');
             this.arrayPaisesVisiveis = auxiliar;
             this.verificarPesquisaNaoEncontrada(auxiliar.length);
+            */
+            let auxiliarA = [];
+            let auxiliarB = [];
+            let auxiliarC = [];
+            auxiliarA = this.buscarPorNome(this.arrayPaises, dado);
+            auxiliarB = this.buscarPorCapital(this.arrayPaises, dado);
+            auxiliarC = this.buscarPorNomeNativo(this.arrayPaises, dado);
+            auxiliarA = this.concatenarArrays(auxiliarA, auxiliarB, auxiliarC);
+            this.arrayPaisesVisiveis = auxiliarA;
+            this.verificarPesquisaNaoEncontrada(auxiliarA.length);
         },
         exibirPagina(dado){
             this.paginaAtual = dado;

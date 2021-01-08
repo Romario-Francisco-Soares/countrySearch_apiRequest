@@ -28,11 +28,11 @@ export default {
         verificarExistenciaDado(dado){
             return ((dado == null || dado == '' || dado == ' ') ? false : true );
         },
-        converterIniciaisCaixaAlta(dado){
-            return dado= dado.toLowerCase().replace(/(?:^|\s)\S/g, (a)=> a.toUpperCase() );
+        converterCaixaBaixa(dado){
+            return dado = dado.toLowerCase();
         },
         tratarDado(dado){
-            (this.verificarExistenciaDado(dado) == true) ? dado = this.limparEspaços(dado) : '';
+            (this.verificarExistenciaDado(dado) == true) ? dado = this.converterCaixaBaixa(this.limparEspaços(dado)) : '';
             (this.verificarExistenciaDado(dado) == true) ? this.pesquisarDado(dado) : this.mostrarTodosPaises();
         }
     }
