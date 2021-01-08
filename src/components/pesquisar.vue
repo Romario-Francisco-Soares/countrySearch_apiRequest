@@ -1,7 +1,7 @@
 <template>
     <div class="containerPesquisar" >
-        <input @keypress="tratarDado(dadoPais)" v-model="dadoPais" type="text" placeholder="Pesquisar Pais">
-        <button @click="tratarDado(dadoPais)">Presquisar</button>
+        <input v-model="dadoPais" type="text" placeholder="Pesquisar Pais">
+        <button @click="validarDado(dadoPais)">Presquisar</button>
     </div>
 </template>
 
@@ -31,9 +31,14 @@ export default {
         converterCaixaBaixa(dado){
             return dado = dado.toLowerCase();
         },
-        tratarDado(dado){
+        validarDado(dado){
             (this.verificarExistenciaDado(dado) == true) ? dado = this.converterCaixaBaixa(this.limparEspaços(dado)) : '';
             (this.verificarExistenciaDado(dado) == true) ? this.pesquisarDado(dado) : this.mostrarTodosPaises();
+        }
+    },
+    watch:{
+        dadoPais(){
+            this.validarDado(this.dadoPais);
         }
     }
 }

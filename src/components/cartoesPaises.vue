@@ -49,17 +49,6 @@ export default {
             this.emitirTotalPaises(this.arrayPaises);
             });
         },
-        teste(arrayPesquisa, dadoPesquisa){
-            let armazenador = []
-            let posicaoArmazenamento = 0;
-            for (let i = 0; i < arrayPesquisa.length; i++) {
-                if (arrayPesquisa[i].name.toLowerCase().indexOf(dadoPesquisa.toLowerCase()) != -1){
-                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
-                    posicaoArmazenamento += 1
-                }
-            }
-            return armazenador;
-        },
         buscarPorNome(arrayPesquisa, dadoPesquisa){
             let armazenador = []
             let posicaoArmazenamento = 0;
@@ -92,16 +81,7 @@ export default {
                 }
             }
             return armazenador;
-        },/*
-        buscarPorNome(arrayPesquisa, dadoPesquisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array == dadoPesquisa);
         },
-        buscarPorCapital(arrayPesquisa, dadoPesquisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.capital == dadoPesquisa);
-        },
-        buscarPorNomeNativo(arrayPesquisa, dadoPesquisa){
-            return arrayPesquisa = arrayPesquisa.filter((array)=> array.nativeName == dadoPesquisa);
-        },*/
         concatenarArrays(array1, array2, array3){
             let uniaoArrays = null;
             uniaoArrays = [...new Set([...array1, ...array2, ...array3])];
@@ -118,15 +98,6 @@ export default {
             this.pesquisaInesistente = false;
         },
         arbitrarPesquisas(dado){
-            /*
-            let arrayVazia = 0;
-            let auxiliar = [];
-            ((auxiliar.length == arrayVazia) ? auxiliar= this.buscarPorNome(this.arrayPaises, dado) : '');
-            ((auxiliar.length == arrayVazia) ? auxiliar= this.buscarPorCapital(this.arrayPaises, dado) : '');
-            ((auxiliar.length == arrayVazia) ? auxiliar= this.buscarPorNomeNativo(this.arrayPaises, dado) : '');
-            this.arrayPaisesVisiveis = auxiliar;
-            this.verificarPesquisaNaoEncontrada(auxiliar.length);
-            */
             let auxiliarA = [];
             let auxiliarB = [];
             let auxiliarC = [];
