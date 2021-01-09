@@ -52,35 +52,32 @@ export default {
         buscarPorNome(arrayPesquisa, dadoPesquisa){
             let armazenador = []
             let posicaoArmazenamento = 0;
-            for (let i = 0; i < arrayPesquisa.length; i++) {
-                if (arrayPesquisa[i].name.toLowerCase().indexOf(dadoPesquisa) != -1){
-                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
-                    posicaoArmazenamento += 1
-                }
-            }
+            arrayPesquisa.forEach((item) => {
+                ((this.buscarEmString(item.name, dadoPesquisa) == true)
+                ? armazenador[posicaoArmazenamento] = item : '');
+            });
             return armazenador;
         },
         buscarPorCapital(arrayPesquisa, dadoPesquisa){
             let armazenador = []
             let posicaoArmazenamento = 0;
-            for (let i = 0; i < arrayPesquisa.length; i++) {
-                if (arrayPesquisa[i].capital.toLowerCase().indexOf(dadoPesquisa) != -1){
-                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
-                    posicaoArmazenamento += 1
-                }
-            }
+            arrayPesquisa.forEach((item) => {
+                ((this.buscarEmString(item.capital, dadoPesquisa) == true)
+                ? armazenador[posicaoArmazenamento] = item : '');
+            });
             return armazenador;
         },
         buscarPorNomeNativo(arrayPesquisa, dadoPesquisa){
             let armazenador = []
             let posicaoArmazenamento = 0;
-            for (let i = 0; i < arrayPesquisa.length; i++) {
-                if (arrayPesquisa[i].nativeName.toLowerCase().indexOf(dadoPesquisa) != -1){
-                    armazenador[posicaoArmazenamento] = arrayPesquisa[i];
-                    posicaoArmazenamento += 1
-                }
-            }
+            arrayPesquisa.forEach((item) => {
+                ((this.buscarEmString(item.nativeName, dadoPesquisa) == true)
+                ? armazenador[posicaoArmazenamento] = item : '');
+            });
             return armazenador;
+        },
+        buscarEmString(dado1, dado2){
+            return ((dado1.toLowerCase().indexOf(dado2) != -1) ? true : false);
         },
         concatenarArrays(array1, array2, array3){
             let uniaoArrays = null;
