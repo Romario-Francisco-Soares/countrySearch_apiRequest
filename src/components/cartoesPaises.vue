@@ -32,12 +32,14 @@ export default {
             primeiraPagina: 0,
             paginaAtual: 1,
             limitePaisesPorPagina: null,
+            incrementoLimitePaisesPorPagina: null
         }
     },
     methods:{
         exibirDetalhamento(dado){
             bus.$emit('eventoDetalhamento', dado);
             bus.$emit('eventoAbrirModalPais');
+            console.log(this.incrementoLimitePaisesPorPagina);
         },
         emitirTotalPaises(dado){
             bus.$emit('eventoTotalPaises', dado.length);
@@ -109,13 +111,22 @@ export default {
             this.paginaAtual = dado;
             this.arrayPaisesVisiveis = this.arrayPaises.slice(
             this.paginaAtual*this.limitePaisesPorPagina,
-            this.paginaAtual*this.limitePaisesPorPagina+this.limitePaisesPorPagina);
+            this.paginaAtual*this.limitePaisesPorPagina+this.incrementoLimitePaisesPorPagina);
+        },
+        incrementarLimitePaisesPorPagina(){
+            console.log('ai');
+            ((this.limitePaisesPorPagina > this.incrementoLimitePaisesPorPagina) 
+            ? this.incrementoLimitePaisesPorPagina += this.incrementoLimitePaisesPorPagina : console.log('entrou'));
+            this.exibirPagina(this.paginaAtual);
         }
     },
     created(){
         this.buscarTodosPaises();
     },
     beforeMount(){
+        bus.$on('eventoMostrarMais',() =>{
+            this.incrementarLimitePaisesPorPagina();
+        });
         bus.$on('eventoDadoPais',(dado)=>{
             this.arbitrarPesquisas(dado);
         });
@@ -128,7 +139,13 @@ export default {
         });
         bus.$on('eventoLimitePaisesPorPagina', (dado)=>{
             this.limitePaisesPorPagina = dado;
+            this.incrementoLimitePaisesPorPagina = Math.round(dado/3);
         });
+    },
+    watch:{
+        paginaAtual(){
+            this.incrementoLimitePaisesPorPagina = Math.round(this.limitePaisesPorPagina/3);
+        }
     }
 }
 </script>

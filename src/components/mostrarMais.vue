@@ -1,13 +1,20 @@
 <template>
     <div class="mostrarMais" >
-       <p>Mostrar Mais</p>
+       <p @click="mostrarMais()">Mostrar Mais</p>
        <p class="mais">+</p>
     </div>
 </template>
 
 <script>
+import { bus } from '../main'
+
 export default {
     name:'mostrarMais',
+    methods:{
+        mostrarMais(){
+            bus.$emit('eventoMostrarMais');
+        }
+    }
 }
 </script>
 
